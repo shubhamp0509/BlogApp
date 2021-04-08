@@ -2,6 +2,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import include, url
+
+
 
 from posts.views import (
     index,
@@ -16,7 +19,8 @@ from posts.views import (
     PostDetailView,
     PostCreateView,
     PostUpdateView,
-    PostDeleteView
+    PostDeleteView,
+    SignUpView
 )
 from marketing.views import email_list_signup
 
@@ -37,7 +41,11 @@ urlpatterns = [
     # path('post/<id>/delete/', post_delete, name='post-delete'),
     path('post/<pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('tinymce/', include('tinymce.urls')),
-    path('accounts/', include('allauth.urls'))
+   url("accounts/", include("django.contrib.auth.urls")),
+    
+    path('accounts/signup/', SignUpView.as_view(), name='signup'),
+   
+    # path('accounts/', include('allauth.urls'))
 ]
 
 if settings.DEBUG:

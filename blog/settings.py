@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'tinymce',
+    
 
     'marketing',
     'posts'
@@ -174,5 +175,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend'
 )
+
+LOGOUT_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/"
 
 SITE_ID = 1

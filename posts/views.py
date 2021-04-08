@@ -9,6 +9,10 @@ from .models import Post, Author, PostView
 from marketing.forms import EmailSignupForm
 from marketing.models import Signup
 
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
+
 form = EmailSignupForm()
 
 
@@ -287,3 +291,11 @@ def post_delete(request, id):
     post = get_object_or_404(Post, id=id)
     post.delete()
     return redirect(reverse("post-list"))
+
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'
+
+
+

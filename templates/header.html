@@ -19,7 +19,7 @@
         <div class="container">
           <!-- Navbar Brand -->
           <div class="navbar-header d-flex align-items-center justify-content-between">
-            <!-- Navbar Brand --><a href="/" class="navbar-brand">Bootstrap Blog</a>
+            <!-- Navbar Brand --><a href="/" class="navbar-brand">Geek's Sentiment</a>
             <!-- Toggle Button-->
             <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
           </div>
@@ -30,17 +30,30 @@
               </li>
               <li class="nav-item"><a href="/blog" class="nav-link active ">Blog</a>
               </li>
-              <li class="nav-item"><a href="#" class="nav-link ">Contact</a>
-              </li>
+              
               {% if request.user.is_staff %}
               <li class="nav-item"><a href="{% url 'post-create' %}" class="nav-link ">Create</a>
               </li>
               {% endif %}
+
+              {% if request.user.is_authenticated %}
+              <li class="nav-item"><a href="/accounts/logout" class="nav-link ">Logout</a>
+              </li>
+              <li class="nav-item"><a href="/registration/profile/" class="nav-link ">Profile</a><img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" id="img"> 
+
+              </li>
+              {% else %}
+              <li class="nav-item"><a href="/accounts/login/" class="nav-link ">Login</a>
+              </li>
+              <li class="nav-item"><a href="/accounts/signup/" class="nav-link ">SignUp</a>
+              </li>
+              {% endif %}
+
+              
+              
               
             </ul>
-            <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
-            {% comment %} <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a href="#">ES</a></ul> {% endcomment %}
-          </div>
+            
         </div>
       </nav>
     </header>
