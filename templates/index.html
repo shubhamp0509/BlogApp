@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block content %}
 
+
     <!-- Hero Section-->
-    <section style="background: url({% static 'img/hero.jpg' %}); background-size: cover; background-position: center center" class="hero">
+    <!-- <section style="background: url({% static 'img/hero.jpg' %}); background-size: cover; background-position: center center" class="hero">
       <div class="container">
         <div class="row">
           <div class="col-lg-7">
@@ -12,9 +14,49 @@
           </div>
         </div><a href=".intro" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Scroll Down</a>
       </div>
-    </section>
+    </section> -->
+    <header>
+      <!-- header inner -->
+      <div  class="head_top">
+         <div class="header">
+    <div id="about" class="banner_main">
+      <section class="banner_main">
+         <div class="container">
+            <div class="row d_flex">
+               <div class=" col-xl-8 col-lg-8 col-md-8 col-12-9">
+                  <div class="text-bg">
+                     <h1>Computer Science Portal<br> </h1>
+                     <p>Computer Science Portal is an Website where you find
+          blogs related to computer science and it will
+          help you with your knowledge We have number of users who share their
+          knowledge through the blog here,and the advantage
+          is it is sorted with positive sentiments. The blogs will help you with your studies.
+        </p>
+                     <a href= "#">Read More</a>
+                  </div>
+               </div>
+               <div class="col-xl-4 col-lg-4 col-md-4 col-12-3">
+                  <div class="text-img">
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+
+
+
     <!-- Intro Section-->
-    <section class="intro">
+    <!-- <section class="intro">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
@@ -23,8 +65,17 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="featured-posts no-padding-top">
+    </section> -->
+    <div class="row">
+      <div class="col-md-12">
+         <div class="titlepage">
+            <h2>Our Blogs</h2>
+            <span>The All Time Best Way To Search and Study Hard</span>
+         </div>
+      </div>
+   </div>
+
+    <section class="featured-posts no-padding-top" >
       <div class="container">
         <!-- Post-->
         {% for obj in object_list %}
@@ -63,15 +114,7 @@
       </div>
     </section>
     <!-- Divider Section-->
-    <section style="background: url({% static 'img/divider-bg.jpg' %}); background-size: cover; background-position: center bottom" class="divider">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-7">
-            <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h2><a href="#" class="hero-link">View More</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    
     <!-- Latest Posts -->
     <section class="latest-posts"> 
       <div class="container">
@@ -101,7 +144,7 @@
       </div>
     </section>
     <!-- Newsletter Section-->
-    <section class="newsletter no-padding-top">    
+    <!-- <section class="newsletter no-padding-top">    
       <div class="container">
         <div class="row">
           <div class="col-md-6">
@@ -121,7 +164,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- Gallery Section-->
     <!-- <section class="gallery no-padding">    
       <div class="row">

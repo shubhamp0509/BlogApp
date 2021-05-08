@@ -4,7 +4,9 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from .forms import CommentForm, PostForm
+from django.contrib.auth import authenticate
+
+from .forms import CommentForm, PostForm, SignUpForm
 from .models import Post, Author, PostView
 from marketing.forms import EmailSignupForm
 from marketing.models import Signup
@@ -292,10 +294,29 @@ def post_delete(request, id):
     post.delete()
     return redirect(reverse("post-list"))
 
+
+# SignUp ....
+
+
 class SignUpView(generic.CreateView):
-    form_class = UserCreationForm
-    success_url = reverse_lazy('login')
-    template_name = 'registration/signup.html'
+    #     form_class = UserCreationForm
+    #     success_url = reverse_lazy('login')
+    #     template_name = 'registration/signup.html'
 
+    def signup(request):
+        if request.method == 'POST':
+            form = SignUpForm(request.POST)
 
+            if form.is_valid():
+                form.save()
+                username = form.cleaned_data.get('username')
+                raw_password = form.cleaned_data.get('password1')
+                user = authenticate(username=username, password=raw_password)
+                # form.instance.Author = username
 
+                
+
+                return redirect('/')
+        else:
+            form = SignUpForm()
+        return render(request, 'registration/signup.html', {'form': form})

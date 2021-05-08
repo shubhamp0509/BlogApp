@@ -4,10 +4,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import EmailSignupForm
 from .models import Signup
-
-
-
-
 import json
 import requests
 
@@ -46,7 +42,3 @@ def email_list_signup(request):
                 subscribe(form.instance.email)
                 form.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
-
-

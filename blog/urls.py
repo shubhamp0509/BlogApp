@@ -5,7 +5,6 @@ from django.urls import path, include
 from django.conf.urls import include, url
 
 
-
 from posts.views import (
     index,
     search,
@@ -41,10 +40,10 @@ urlpatterns = [
     # path('post/<id>/delete/', post_delete, name='post-delete'),
     path('post/<pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('tinymce/', include('tinymce.urls')),
-   url("accounts/", include("django.contrib.auth.urls")),
-    
-    path('accounts/signup/', SignUpView.as_view(), name='signup'),
-   
+    url("accounts/", include("django.contrib.auth.urls")),
+
+    # path('accounts/signup/', SignUpView.as_view(), name='signup'),
+    url('accounts/signup/', SignUpView.signup, name='signup'),
     # path('accounts/', include('allauth.urls'))
 ]
 

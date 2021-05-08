@@ -2,6 +2,8 @@ from tinymce import HTMLField
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from manage import getSentiment
+
 
 User = get_user_model()
 
@@ -15,6 +17,7 @@ class PostView(models.Model):
 
 
 class Author(models.Model):
+    # if user is delted then delete author
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField()
 
@@ -33,11 +36,23 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
+    
+    
     post = models.ForeignKey(
         'Post', related_name='comments', on_delete=models.CASCADE)
 
     def __str__(self):
+        # print(self.user.username)
+        com(self)
         return self.user.username
+
+def com(self):
+    sentiment=getSentiment(self.content)
+    
+    print("In comment Part ",self.content+"  "+sentiment)
+    # return self.post.comments
+        
+   
 
 
 class Post(models.Model):
@@ -55,6 +70,8 @@ class Post(models.Model):
         'self', related_name='previous', on_delete=models.SET_NULL, blank=True, null=True)
     next_post = models.ForeignKey(
         'self', related_name='next', on_delete=models.SET_NULL, blank=True, null=True)
+
+   
 
     def __str__(self):
         return self.title
@@ -76,6 +93,11 @@ class Post(models.Model):
 
     @property
     def get_comments(self):
+        # fun(self.comments.all().order_by('-timestamp'))
+        print(self.comments.all().order_by('-timestamp'))
+       
+       
+        # print(self.comments.all().order_by('-timestamp'))
         return self.comments.all().order_by('-timestamp')
 
     @property
@@ -85,3 +107,9 @@ class Post(models.Model):
     @property
     def view_count(self):
         return PostView.objects.filter(post=self).count()
+
+
+def fun(list):
+        print("Hello",list[0])
+
+    
